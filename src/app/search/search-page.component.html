@@ -1,0 +1,26 @@
+<section class="card">
+  <h3>Observable Search (Streams)</h3>
+
+  <form [formGroup]="form" class="controls">
+    <input class="input" formControlName="q" placeholder="Type ≥ 2 letters" />
+    <select class="input" formControlName="lang">
+      <option value="">Any</option>
+      <option>TypeScript</option>
+      <option>JavaScript</option>
+    </select>
+  </form>
+
+  <p class="muted" *ngIf="loading$ | async">Loading…</p>
+
+  <ul *ngIf="repos$ | async as repos">
+    <li *ngFor="let r of repos">{{ r.full_name }}</li>
+  </ul>
+
+  <h4>Live feed (polling)</h4>
+  <ul *ngIf="events$ | async as events">
+    <li *ngFor="let e of events | slice:0:5">
+      <!-- TODO: render event fields -->
+      Event placeholder
+    </li>
+  </ul>
+</section>

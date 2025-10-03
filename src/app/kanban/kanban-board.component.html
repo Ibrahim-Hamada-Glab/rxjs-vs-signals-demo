@@ -1,0 +1,36 @@
+<section class="card">
+  <header class="header">
+    <h3>Local Kanban (Signals)</h3>
+    <div class="actions">
+      <!-- TODO: add input + button to add tasks -->
+      <button class="btn" disabled>Add Task</button>
+      <select class="input" disabled>
+        <option value="all">All</option>
+        <option value="high">High only</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="columns">
+    <div class="col">
+      <h4>Todo</h4>
+      <!-- TODO: render store.todo() -->
+      <p class="muted">No items yet.</p>
+    </div>
+    <div class="col">
+      <h4>Doing</h4>
+      <!-- TODO: render store.doing() -->
+      <p class="muted">No items yet.</p>
+    </div>
+    <div class="col">
+      <h4>Done</h4>
+      <!-- TODO: render store.done() -->
+      <p class="muted">No items yet.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <!-- TODO: show derived stats (highCount, progress, etc.) -->
+    <span class="muted">Progress: (to implement)</span>
+  </footer>
+</section>

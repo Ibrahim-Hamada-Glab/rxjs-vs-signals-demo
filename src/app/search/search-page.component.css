@@ -1,0 +1,5 @@
+:host { display:block; }
+.card { padding:16px; border:1px solid #2a3140; border-radius:12px; max-width:960px; }
+.controls { display:grid; grid-template-columns: 2fr 1fr; gap:10px; margin-bottom:10px; }
+.input { padding:8px 10px; border:1px solid #2a3140; border-radius:8px; }
+.muted { color:#8c96a8; }
