@@ -6,5 +6,4 @@ export interface Task {
   title: string;
   priority: TaskPriority;
   state: TaskState;
-  // TODO: add more fields (description, tags, etc.)
 }

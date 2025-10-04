@@ -2,8 +2,9 @@
   <header class="header">
     <h3>Local Kanban (Signals)</h3>
     <div class="actions">
-      <!-- TODO: add input + button to add tasks -->
-      <button class="btn" disabled>Add Task</button>
+      <button class="btn btn-primary" (click)="adding.set(true)">
+        Add Task
+      </button>
       <select class="input" disabled>
         <option value="all">All</option>
         <option value="high">High only</option>
@@ -11,26 +12,33 @@
     </div>
   </header>
 
-  <div class="columns">
-    <div class="col">
-      <h4>Todo</h4>
-      <!-- TODO: render store.todo() -->
-      <p class="muted">No items yet.</p>
-    </div>
-    <div class="col">
-      <h4>Doing</h4>
-      <!-- TODO: render store.doing() -->
-      <p class="muted">No items yet.</p>
-    </div>
-    <div class="col">
-      <h4>Done</h4>
-      <!-- TODO: render store.done() -->
-      <p class="muted">No items yet.</p>
-    </div>
+  <div class="columns" cdkDropListGroup>
+    <app-kanban-column
+      [title]="'Todo'"
+      [tasks]="store.todo()"
+      [state]="'todo'"
+      (drop)="onDrop($event)"
+    />
+    <app-kanban-column
+      [title]="'Doing'"
+      [tasks]="store.doing()"
+      [state]="'doing'"
+      (drop)="onDrop($event)"
+    />
+    <app-kanban-column
+      [title]="'Done'"
+      [tasks]="store.done()"
+      [state]="'done'"
+      (drop)="onDrop($event)"
+    />
   </div>
-
   <footer class="footer">
     <!-- TODO: show derived stats (highCount, progress, etc.) -->
-    <span class="muted">Progress: (to implement)</span>
+    <span class="muted">Progress: {{ store.progress().toFixed(2) }}%</span>
   </footer>
 </section>
+
+@if (adding()) {
+<app-add-task-dialog (cancel)="adding.set(false)" (create)="adding.set(false)">
+</app-add-task-dialog>
+}

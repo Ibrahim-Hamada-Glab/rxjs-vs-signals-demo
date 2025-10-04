@@ -1,1 +1,163 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global theme and utilities */
+
+/* CSS variables for theming */
+:root {
+  --bg: #0f1521;
+  --surface: #141b29;
+  --surface-2: #0f1624;
+  --border: #263044;
+  --text: #e7eefb;
+  --text-muted: #a9b3c7;
+  --accent: #4f7cff;
+  --accent-contrast: #0b1222;
+  --ring: rgba(79, 124, 255, 0.45);
+  --shadow: 0 6px 24px rgba(3, 8, 20, 0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f8fc;
+    --surface: #ffffff;
+    --surface-2: #f2f5fb;
+    --border: #d6deea;
+    --text: #0e1220;
+    --text-muted: #5b667a;
+    --accent: #2f67ff;
+    --accent-contrast: #ffffff;
+    --ring: rgba(47, 103, 255, 0.35);
+    --shadow: 0 8px 28px rgba(10, 22, 70, 0.08);
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Top navigation */
+.top-nav {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: saturate(1.2) blur(6px);
+  background: color-mix(in srgb, var(--bg), #000 6%);
+  border-bottom: 1px solid var(--border);
+}
+.top-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  color: var(--text);
+}
+.top-nav a:hover {
+  background: color-mix(in srgb, var(--surface-2), var(--accent) 10%);
+  text-decoration: none;
+}
+.top-nav a.active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.content-area { padding: 16px; min-height: calc(100dvh - 54px); }
+
+/* Responsive container widths */
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 740px; } }
+@media (min-width: 1024px) { .container { max-width: 980px; } }
+@media (min-width: 1280px) { .container { max-width: 1140px; } }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Generic card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* Inputs */
+.input,
+select,
+input[type="text"],
+input[type="search"],
+input[type="number"] {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.input:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Buttons */
+.btn {
+  appearance: none;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, transform .06s ease;
+}
+.btn:hover { background: color-mix(in srgb, var(--surface-2), var(--accent) 8%); }
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: color-mix(in srgb, var(--accent), #000 10%);
+}
+.btn-primary:hover { filter: brightness(1.05); }
+
+.muted { color: var(--text-muted); }
+
+/* Small utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fade-in { animation: fade-in .24s ease-out both; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
